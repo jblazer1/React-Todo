@@ -1,5 +1,6 @@
 import React from "react";
 import TodoList from "./components/TodoComponents/TodoList";
+import TodoForm from "./components/TodoComponents/TodoForm";
 
 const todos = [
   {
@@ -18,13 +19,23 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: todos
+      todos: todos,
+      newTodo: ""
     };
   }
+
+  newTodoHandler = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
     return (
       <div>
         <TodoList todos={this.state.todos} />
+        <TodoForm
+          newTodo={this.state.newTodo}
+          newTodoHandler={this.newTodoHandler}
+        />
       </div>
     );
   }
