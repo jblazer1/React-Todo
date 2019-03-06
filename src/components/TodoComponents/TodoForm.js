@@ -9,6 +9,9 @@ const TodoForm = props => {
         onChange={props.newTodoHandler}
         name="newTodo"
       />
+      <button type="submit" onClick={props.addTodo}>
+        Add Todo
+      </button>
     </form>
   );
 };
