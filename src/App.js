@@ -20,7 +20,8 @@ class App extends React.Component {
     super();
     this.state = {
       todos: todos,
-      newTodo: ""
+      newTodo: "",
+      completed: false
     };
   }
 
@@ -40,6 +41,24 @@ class App extends React.Component {
         }
       ],
       newTodo: ""
+    });
+  };
+
+  markComplete = itemId => {
+    this.setState(prevState => {
+      return {
+        todos: prevState.todos.map(banana => {
+          if (banana.id === itemId) {
+            return {
+              task: banana.task,
+              id: banana.id,
+              completed: !banana.completed
+            };
+          } else {
+            return banana;
+          }
+        })
+      };
     });
   };
 
@@ -63,7 +82,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} markComplete={this.markComplete} />
         <TodoForm
           addTodo={this.addTodo}
           newTodoHandler={this.newTodoHandler}
