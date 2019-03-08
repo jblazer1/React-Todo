@@ -64,6 +64,17 @@ class App extends React.Component {
     });
   };
 
+  removeComplete = event => {
+    event.preventDefault();
+    this.setState(prevState => {
+      return {
+        todos: prevState.todos.filter(allDone => {
+          return !allDone.completed;
+        })
+      };
+    });
+  };
+
   // formSubmitHandler = event => {
   //   event.preventDefault();
   //   let newTodo = {
@@ -83,12 +94,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="app-container">
         <TodoList todos={this.state.todos} markComplete={this.markComplete} />
         <TodoForm
           addTodo={this.addTodo}
           newTodoHandler={this.newTodoHandler}
           newTodo={this.state.newTodo}
+          removeComplete={this.removeComplete}
         />
       </div>
     );
