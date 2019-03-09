@@ -33,17 +33,21 @@ class App extends React.Component {
 
   addTodo = event => {
     event.preventDefault();
-    this.setState({
-      todos: [
-        ...this.state.todos,
-        {
-          task: this.state.newTodo,
-          id: Date.now(),
-          completed: false
-        }
-      ],
-      newTodo: ""
-    });
+    if (this.state.newTodo === "") {
+      alert("You have to enter a new Todo in order to add a Todo you igit!");
+    } else {
+      this.setState({
+        todos: [
+          ...this.state.todos,
+          {
+            task: this.state.newTodo,
+            id: Date.now(),
+            completed: false
+          }
+        ],
+        newTodo: ""
+      });
+    }
   };
 
   markComplete = itemId => {
